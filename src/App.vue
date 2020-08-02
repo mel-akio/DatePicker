@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Test technique : Crée un datepicker</h1>
+    <h1 class="title">Test technique : Crée un datepicker</h1>
     <DatePicker />
   </div>
 </template>
@@ -24,5 +24,9 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+
+  .title {
+    margin-bottom: 1em;
   }
 </style>

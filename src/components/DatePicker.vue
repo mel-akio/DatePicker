@@ -1,13 +1,13 @@
 <template>
   <div class="component">
-    <vue-dropdown :config="config" @setSelectedOption="updateMonth($event)" class="dropdown"></vue-dropdown>
+    <vue-dropdown class="dropdown" :config="config" @setSelectedOption="updateMonth($event)"></vue-dropdown>
     <div v-if="selectedKey != undefined">
       <div class="calendar">
         <div class="calendar__dayName" v-for="(dayName, i) in daysNames" :key="i" v-on:click="toogleColumn(i)">
           {{dayName}}</div>
         <div v-for="(day, i) in daysOfMonth" :key="'A' + i">
-          <div v-if="day.day && render" class="calendar__days" v-on:click="toogleDay(i)"
-            v-bind:class="{ 'calendar__days__selected': selectedDays[i] }">
+          <div class="calendar__days" v-bind:class="{ 'calendar__days__selected': selectedDays[i] }"
+            v-if="day.day && render" v-on:click="toogleDay(i)">
             {{day.day}}
           </div>
         </div>
@@ -151,7 +151,6 @@
     animation-duration: 1s;
     animation-fill-mode: forwards;
   }
-
 
   /* Keyframes Animations */
 

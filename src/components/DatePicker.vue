@@ -1,15 +1,14 @@
 <template>
   <div class="component">
     <vue-dropdown class="dropdown" :config="config" @setSelectedOption="updateMonth($event)"></vue-dropdown>
-    <div v-if="selectedKey != undefined">
-      <div class="calendar">
-        <div class="calendar__dayName" v-for="(dayName, i) in daysNames" :key="i" v-on:click="toogleColumn(i)">
-          {{dayName}}</div>
-        <div v-for="(day, i) in daysOfMonth" :key="'A' + i">
-          <div class="calendar__days" v-bind:class="{ 'calendar__days__selected': selectedDays[i] }"
-            v-if="day.day && render" v-on:click="toogleDay(i)">
-            {{day.day}}
-          </div>
+    <div class="calendar" v-if="selectedKey != undefined">
+      <div class="calendar__dayName" v-for="(dayName, i) in daysNames" :key="i"
+        v-on:click="render = false; toogleColumn(i)">
+        {{dayName}}</div>
+      <div v-for="(day, i) in daysOfMonth" :key="'A' + i">
+        <div class="calendar__days" v-bind:class="{ 'calendar__days__selected': selectedDays[i] }"
+          v-if="day.day && render" v-on:click="render = false; toogleDay(i);">
+          {{day.day}}
         </div>
       </div>
     </div>
@@ -55,13 +54,11 @@
       },
       toogleDay: function (index) {
         this.selectedDays[index] = !this.selectedDays[index]
-        this.render = false
         this.render = true
       },
       toogleColumn: function (index) {
         for (let i = 0; i <= 35; i += 7)
           this.selectedDays[index + i] = !this.selectedDays[index + 35]
-        this.render = false
         this.render = true
       },
       getNextMonths: function () {
